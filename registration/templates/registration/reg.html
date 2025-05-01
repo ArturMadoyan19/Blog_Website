@@ -1,0 +1,31 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+</head>
+<body>
+    <div class="title">
+        <h1>Registration</h1>
+    </div>
+    <div class="reg">
+        <form action="{% url 'registration' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Name" value="{{ name }}"><br>
+            <input type="text" name="surname" placeholder="Surname" value="{{ surname }}"><br>
+            <input type="text" name="username" placeholder="Username" value="{{ username }}"><br>
+            <input type="email" name="email" placeholder="Email" value="{{ email }}"><br>
+            <input type="password" name="password" placeholder="Password"><br>
+
+            <button type="submit">Գրանցվել</button>
+
+            <p>{{ response.status }}</p>
+            <p>{{ check.status }}</p>
+        </form>
+    </div>
+
+    
+</body>
+</html>

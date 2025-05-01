@@ -1,0 +1,39 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+    <link rel="stylesheet" href="{% static 'css/post.css' %}">
+</head>
+<body>
+    <h1>Welcome to Posts</h1>
+    <a href="{% url 'logout' %}">(Logout)</a>
+    <form method="post" action="{% url 'add_post' %}">
+        {% csrf_token %}
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <input type="text" placeholder="Title" name="title" value="{{ title }}" >
+        <textarea placeholder="Text" name="text" rows="10" cols="65">{{ post }}</textarea>
+        <button type="submit">Add Post</button>
+        <p><strong>{{ title }}</strong></p>
+        <p>{{ post }}</p>
+        <div class="posts" style="max-height: 400px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+            {% for post in posts %}
+                <div class="post-card" style="margin-bottom: 10px;">
+                    <p style="color: rgb(153, 248, 89);">Author: {{ post.name }}</p>
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.post }}</p>
+                    <a href="{% url 'delete_post' post.id %}">delete</a>
+
+                    <a href="{% url 'edit_post' post.id %}">edit</a>
+                </div>
+            {% empty %}
+                <p>No posts yet.</p>
+            {% endfor %}
+        </div>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View</title>
+    <link rel="stylesheet" href="{% static 'css/view.css' %}">
+
+</head>
+<body>
+    <div>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'ui' %}">Registration</a>
+    </div>
+</body>
+</html>
